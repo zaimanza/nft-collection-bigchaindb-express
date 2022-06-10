@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     })
     const handleClickLogin = async () => {
         console.log("hello_aiman")
+        const mnemonic = "moment conduct device congress awkward grain team gas flight option culture sign"
         const register_result = await player_login({
             mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
         })
@@ -19,6 +20,7 @@ router.get('/', async (req, res) => {
     }
     res.render('pages/LoginPage/LoginPage', {
         handleClickLogin: handleClickLogin,
+        mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign",
     })
 })
 
