@@ -1,2 +1,2 @@
-# nft-collection-bigchaindb-express
-An implementation of bigchiandb using express to store collections and nfts
+# game-leaderboard-bigchiandb
+This is a frontend backend implementation of bigchaindb.
