@@ -36,7 +36,6 @@ const useGame = () => {
             // // IF TAK WUJUD baru ampa create
 
             if (isExists == false) {
-                console.log("is_can_create")
                 latestTransaction = await createSingleAsset({
                     asset: asset,
                     metadata: metadata,
@@ -98,7 +97,6 @@ const useGame = () => {
 
 
         } catch (error) {
-            console.log(error);
         }
 
     }

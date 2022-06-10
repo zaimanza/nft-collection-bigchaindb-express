@@ -4,14 +4,14 @@ const useLocalStorage = require('./useLocalStorage')
 const useMongodb = require('../modules/useMongodb')
 const useBigchaindb = require('../modules/useBigchaindb')
 
-const useCollection = () => {
+const useMetadata = () => {
 
     const { Assets, Transactions } = useMongodb()
     const { setItem, getItem } = useLocalStorage()
     const { createSingleAsset, fetchLatestTransaction } = useBigchaindb()
 
 
-    const getCollection = async () => {
+    const getMetadata = async () => {
         const assetsModel = await Assets()
         const transactionsModel = await Transactions()
 
@@ -30,7 +30,7 @@ const useCollection = () => {
         for (const transaction of fetchedTransactions) {
             const fetchedAssets = await assetsModel.findOne({
                 "id": transaction.id,
-                "data.type": "collection",
+                "data.type": "metadata",
             })
 
             if (fetchedAssets) {
@@ -45,7 +45,7 @@ const useCollection = () => {
         return false
     }
 
-    const createCollection = async ({ asset, metadata, publicKey, privateKey }) => {
+    const createMetadata = async ({ asset, metadata, publicKey, privateKey }) => {
         try {
             let isExists = false
             let latestTransaction
@@ -53,7 +53,6 @@ const useCollection = () => {
             // find player pnya transactions
             const transactionsModel = await Transactions()
             const assetsModel = await Assets()
-
             const fetchedTransactions = await transactionsModel.find({
                 "operation": "CREATE",
                 "inputs.owners_before": publicKey
@@ -64,16 +63,14 @@ const useCollection = () => {
 
                 const fetchedData = await assetsModel.find({
                     "id": transaction.id,
-                    "data.type": "collection",
+                    "data.type": "metadata",
                 }).toArray()
-
-                if (fetchedData.length != 0) isExists = true
+                // if (fetchedData.length != 0) isExists = true
 
                 latestTransaction = await fetchLatestTransaction(transaction.id)
 
             }
             // // IF TAK WUJUD baru ampa create
-
             if (isExists == false) {
 
                 latestTransaction = await createSingleAsset({
@@ -93,9 +90,9 @@ const useCollection = () => {
     }
 
     return {
-        getCollection,
-        createCollection,
+        getMetadata,
+        createMetadata,
     }
 }
 
-module.exports = useCollection
+module.exports = useMetadata

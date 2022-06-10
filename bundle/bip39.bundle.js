@@ -6434,7 +6434,6 @@
       function generateMnemonic() {
         const mnemonic = bip39.generateMnemonic()
 
-        console.log(mnemonic)
         return mnemonic
       }
 

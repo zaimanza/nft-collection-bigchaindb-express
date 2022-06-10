@@ -48,11 +48,9 @@ const useBigchaindb = () => {
             publicKey,
         )
         const txSigned = BigChainDB.Transaction.signTransaction(txCreatePaint, privateKey)
-        console.log("asset_creating")
-        // console.log(txSigned)
+
         let assetCreated = await conn.postTransactionCommit(txSigned)
-        console.log("asset_created")
-        console.log(assetCreated)
+
         return assetCreated ?? {}
         // } catch (error) {
         //     res.status(400).json(error);
@@ -82,12 +80,10 @@ const useBigchaindb = () => {
                 privateKey,
             )
 
-            console.log(signedTransfer)
             let assetTransfered = await conn.postTransactionCommit(signedTransfer)
-            console.log("UPDATE_SUCCESS")
+
             return assetTransfered ?? {}
         } catch (error) {
-            console.log(error)
         }
     }
     return { fetchLatestTransaction, createSingleAsset, updateSingleAsset }

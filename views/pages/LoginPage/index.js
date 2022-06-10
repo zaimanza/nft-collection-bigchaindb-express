@@ -10,12 +10,10 @@ router.get('/', async (req, res) => {
         key: "player",
     })
     const handleClickLogin = async () => {
-        console.log("hello_aiman")
         const mnemonic = "moment conduct device congress awkward grain team gas flight option culture sign"
         const register_result = await player_login({
             mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
         })
-        console.log("the_result")
         // console.table(register_result)
     }
     res.render('pages/LoginPage/LoginPage', {

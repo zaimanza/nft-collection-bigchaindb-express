@@ -11,7 +11,6 @@ const useMongodb = () => {
             client = new MongoClient("mongodb://max:maxmax@18.141.24.92:27017/")
             await client.connect()
             db = await client.db('bigchain')
-            await console.log('mongodb connected...')
         } catch (error) {
             console.error(`MongoDB connection error: ${error}`);
         }
