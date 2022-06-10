@@ -3,9 +3,29 @@ const useCollection = require('../../../modules/useCollection')
 const usePlayer = require('../../../modules/usePlayer')
 
 const { player_login, player_register, getPlayer } = usePlayer()
-const { getCollection } = useCollection()
+const { getCollection, createCollection } = useCollection()
 // api/products
 router.get('/', async (req, res) => {
+    const createCollectionData = req.query
+    console.log("the_return_data")
+    console.log(createCollectionData)
+    if (createCollectionData.title != '' &&
+        createCollectionData.title != '') {
+        const player = await getPlayer()
+        console.log("tengah_create")
+        await createCollection({
+            asset: {
+                type: "collection",
+            },
+            metadata: {
+                title: createCollectionData.title,
+                description: createCollectionData.description,
+                image: createCollectionData.image,
+            },
+            publicKey: player.publicKey,
+            privateKey: player.privateKey
+        })
+    }
     const register_result = await player_login({
         mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
     })
@@ -15,9 +35,9 @@ router.get('/', async (req, res) => {
     // chcek in db if collection tkda
 
     if (fetchedCollection) {
-        res.render('pages/HomePage/HomePage')
+        await res.render('pages/HomePage/HomePage')
     } else {
-        res.render('pages/SetupCollectionPage/SetupCollectionPage')
+        await res.render('pages/SetupCollectionPage/SetupCollectionPage')
     }
 })
 
