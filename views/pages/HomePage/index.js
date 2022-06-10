@@ -6,7 +6,7 @@ const usePlayer = require('../../../modules/usePlayer')
 
 const { player_login, player_register, getPlayer } = usePlayer()
 const { getCollection, createCollection } = useCollection()
-const { getMetadata, createMetadata } = useMetadata()
+const { getMetadatas, createMetadata } = useMetadata()
 const { fetchLatestTransaction } = useBigchaindb()
 // api/products
 router.get('/', async (req, res) => {
@@ -56,11 +56,22 @@ router.get('/', async (req, res) => {
     })
     // console.table(register_result)
     const fetchedCollection = await getCollection()
+    const fetchedMetadatas = await getMetadatas()
     // chcek in db if collection tkda
     if (fetchedCollection) {
         const latestFetchTransaction = await fetchLatestTransaction(fetchedCollection.id)
-
-        await res.render('pages/HomePage/HomePage', latestFetchTransaction.metadata)
+        var latestFetchMetadatas = []
+        for (const fetchedMetadata of fetchedMetadatas) {
+            const latestFetchMeta = await fetchLatestTransaction(fetchedMetadata.id)
+            latestFetchMetadatas.push(latestFetchMeta.metadata)
+        }
+        console.log(latestFetchMetadatas)
+        await res.render('pages/HomePage/HomePage',
+            {
+                collectionData: latestFetchTransaction.metadata,
+                metadatas: latestFetchMetadatas,
+            }
+        )
     } else {
         await res.render('pages/SetupCollectionPage/SetupCollectionPage')
     }

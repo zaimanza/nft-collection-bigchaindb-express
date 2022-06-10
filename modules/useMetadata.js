@@ -11,7 +11,7 @@ const useMetadata = () => {
     const { createSingleAsset, fetchLatestTransaction } = useBigchaindb()
 
 
-    const getMetadata = async () => {
+    const getMetadatas = async () => {
         const assetsModel = await Assets()
         const transactionsModel = await Transactions()
 
@@ -26,7 +26,7 @@ const useMetadata = () => {
             "outputs.public_keys": localPlayetrData.publicKey
         }, { projection: { id: 1, _id: 0 } }).toArray()
 
-        var ownerAsset
+        var ownerAssets = []
         for (const transaction of fetchedTransactions) {
             const fetchedAssets = await assetsModel.findOne({
                 "id": transaction.id,
@@ -34,12 +34,12 @@ const useMetadata = () => {
             })
 
             if (fetchedAssets) {
-                ownerAsset = fetchedAssets
+                ownerAssets.push(fetchedAssets)
             }
         }
 
-        if (ownerAsset) {
-            return ownerAsset
+        if (ownerAssets.length != 0) {
+            return ownerAssets
         }
 
         return false
@@ -90,7 +90,7 @@ const useMetadata = () => {
     }
 
     return {
-        getMetadata,
+        getMetadatas,
         createMetadata,
     }
 }
