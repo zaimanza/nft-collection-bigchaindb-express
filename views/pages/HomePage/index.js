@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
         mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
     })
     console.log("the_result")
-    console.table(register_result)
+    // console.table(register_result)
     const fetchedCollection = await getCollection()
     // chcek in db if collection tkda
 

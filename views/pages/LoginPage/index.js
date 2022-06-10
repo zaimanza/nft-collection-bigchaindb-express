@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
             mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
         })
         console.log("the_result")
-        console.table(register_result)
+        // console.table(register_result)
     }
     res.render('pages/LoginPage/LoginPage', {
         handleClickLogin: handleClickLogin,
