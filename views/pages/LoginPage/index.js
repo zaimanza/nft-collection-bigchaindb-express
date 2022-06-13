@@ -10,15 +10,15 @@ router.get('/', async (req, res) => {
         key: "player",
     })
     const handleClickLogin = async () => {
-        const mnemonic = "moment conduct device congress awkward grain team gas flight option culture sign"
+        const mnemonic = "salad shield toss purse scale weasel dilemma hill gold attitude name admit"
         const register_result = await player_login({
-            mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
+            mnemonic: "salad shield toss purse scale weasel dilemma hill gold attitude name admit"
         })
         // console.table(register_result)
     }
     res.render('pages/LoginPage/LoginPage', {
         handleClickLogin: handleClickLogin,
-        mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign",
+        mnemonic: "salad shield toss purse scale weasel dilemma hill gold attitude name admit",
     })
 })
 

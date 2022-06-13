@@ -42,7 +42,7 @@ const useCollection = () => {
             return ownerAsset
         }
 
-        return false
+        return []
     }
 
     const createCollection = async ({ asset, metadata, publicKey, privateKey }) => {

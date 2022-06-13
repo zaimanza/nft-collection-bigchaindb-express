@@ -42,7 +42,7 @@ const useMetadata = () => {
             return ownerAssets
         }
 
-        return false
+        return []
     }
 
     const createMetadata = async ({ asset, metadata, publicKey, privateKey }) => {

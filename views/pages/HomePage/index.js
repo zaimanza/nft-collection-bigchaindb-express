@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
     }
 
     const register_result = await player_login({
-        mnemonic: "moment conduct device congress awkward grain team gas flight option culture sign"
+        mnemonic: "salad shield toss purse scale weasel dilemma hill gold attitude name admit"
     })
     // console.table(register_result)
     const fetchedCollection = await getCollection()
@@ -61,11 +61,15 @@ router.get('/', async (req, res) => {
     if (fetchedCollection) {
         const latestFetchTransaction = await fetchLatestTransaction(fetchedCollection.id)
         var latestFetchMetadatas = []
-        for (const fetchedMetadata of fetchedMetadatas) {
-            const latestFetchMeta = await fetchLatestTransaction(fetchedMetadata.id)
-            latestFetchMetadatas.push(latestFetchMeta.metadata)
+        console.log("checking_collection_metadatas")
+        console.log(fetchedMetadatas)
+        if (fetchedMetadatas.length != 0) {
+            for (const fetchedMetadata of fetchedMetadatas) {
+                const latestFetchMeta = await fetchLatestTransaction(fetchedMetadata.id)
+                latestFetchMetadatas.push(latestFetchMeta.metadata)
+            }
+            console.log(latestFetchMetadatas)
         }
-        console.log(latestFetchMetadatas)
         await res.render('pages/HomePage/HomePage',
             {
                 collectionData: latestFetchTransaction.metadata,

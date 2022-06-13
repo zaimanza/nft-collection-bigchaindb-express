@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs')
 
 // Routes which should handle requests
+app.use("/controllers", require('./controller'))
 app.use('/', require('./views/pages'));
 
 app.use((req, res, next) => {
