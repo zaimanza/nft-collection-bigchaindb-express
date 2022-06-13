@@ -6,56 +6,56 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="container">
+<body class="">
 
 
   <main>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+    <div class="">
+      <label class="" for="title">
         Title
       </label>
-      <input id="title" name="title" value="<%= collectionData.title %>" type="text" placeholder="Title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <input id="title" name="title" value="<%= collectionData.title %>" type="text" placeholder="Title" class="">
     </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+    <div class="">
+      <label class="" for="description">
         Description
       </label>
-      <input id="description" name="description" value="<%= collectionData.description %>" type="text" placeholder="Description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <input id="description" name="description" value="<%= collectionData.description %>" type="text" placeholder="Description" class="">
     </div>
-    <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+    <div class="">
+      <label class="" for="image">
         Image url
       </label>
-      <input id="image" name="image" value="<%= collectionData.image %>" type="text" placeholder="Image url" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      <input id="image" name="image" value="<%= collectionData.image %>" type="text" placeholder="Image url" class="">
     </div>
-    <div className="relative md:ml-64 bg-blueGray-100">
-      <div class="text-center mt-6">
-        <a href="/addMetadata" class="bg-blueGray-800 text-blue-600 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="button">
+    <div class="">
+      <div class="">
+        <a href="/addMetadata" class="" type="button">
           Add Metadata
         </a>
       </div>
     </div>
-    <table class="border-collapse table-fixed w-full text-sm">
+    <table class="">
       <thead>
         <tr>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 name name text-left">Trait type</th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pt-0 pb-3 name name text-left">Value</th>
-          <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 name name text-left">Display type</th>
+          <th class="">Trait type</th>
+          <th class="">Value</th>
+          <th class="">Display type</th>
         </tr>
       </thead>
-      <tbody class="bg-white dark:bg-slate-800">
+      <tbody class="">
         <% for (var i =1; i <=metadatas.length;  i++ ) { %>
         <tr>
-          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 name"><%= metadatas[i-1].trait_type %></td>
-          <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 name"><%= metadatas[i-1].value %></td>
-          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pr-8 text-slate-500 name"><%= metadatas[i-1].display_type %></td>
+          <td class=""><%= metadatas[i-1].trait_type %></td>
+          <td class=""><%= metadatas[i-1].value %></td>
+          <td class=""><%= metadatas[i-1].display_type %></td>
         </tr>
         <% } %>
       </tbody>
     </table>
-    <div className="relative md:ml-64 bg-blueGray-100">
-      <div class="text-center mt-6">
-        <a href="/login" class="bg-blueGray-800 text-blue-600 active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="button">
+    <div class="">
+      <div class="">
+        <a href="/login" class="" type="button">
           Logout
         </a>
       </div>
