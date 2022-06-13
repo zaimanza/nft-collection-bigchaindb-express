@@ -9,7 +9,7 @@ const { getCollection, createCollection } = useCollection()
 const { getMetadatas, createMetadata } = useMetadata()
 const { fetchLatestTransaction } = useBigchaindb()
 // api/products
-router.get('/:mode', async (req, res) => {
+router.get('/:mode?', async (req, res) => {
     const mode = req.params?.mode ?? null
     const createCollectionData = req.query
     if (mode == "setup_collection") {
