@@ -9,46 +9,53 @@ const { getCollection, createCollection } = useCollection()
 const { getMetadatas, createMetadata } = useMetadata()
 const { fetchLatestTransaction } = useBigchaindb()
 // api/products
-router.get('/', async (req, res) => {
+router.get('/:mode', async (req, res) => {
+    const mode = req.params?.mode ?? null
     const createCollectionData = req.query
-    if (
-        createCollectionData.title != '' &&
-        createCollectionData.description != '' &&
-        createCollectionData.image != ''
-    ) {
-        const player = await getPlayer()
-        await createCollection({
-            asset: {
-                type: "collection",
-            },
-            metadata: {
-                title: createCollectionData.title,
-                description: createCollectionData.description,
-                image: createCollectionData.image,
-            },
-            publicKey: player.publicKey,
-            privateKey: player.privateKey
-        })
+    if (mode == "setup_collection") {
+        if (
+            createCollectionData.title != '' &&
+            createCollectionData.description != '' &&
+            createCollectionData.image != ''
+        ) {
+            const player = await getPlayer()
+            await createCollection({
+                asset: {
+                    type: "collection",
+                },
+                metadata: {
+                    title: createCollectionData.title,
+                    description: createCollectionData.description,
+                    image: createCollectionData.image,
+                },
+                publicKey: player.publicKey,
+                privateKey: player.privateKey
+            })
+        }
     }
-    if (
-        createCollectionData.trait_type != '' &&
-        createCollectionData.value != '' &&
-        createCollectionData.display_type != ''
-    ) {
-        const player = await getPlayer()
+    if (mode == "add_metadata") {
+        if (
+            createCollectionData.name != '' &&
+            createCollectionData.description != '' &&
+            createCollectionData.token_id != '' &&
+            createCollectionData.image != '' &&
+            createCollectionData.current_chain != ''
+        ) {
+            const player = await getPlayer()
 
-        await createMetadata({
-            asset: {
-                type: "metadata",
-            },
-            metadata: {
-                trait_type: createCollectionData.trait_type,
-                value: createCollectionData.value,
-                display_type: createCollectionData.display_type,
-            },
-            publicKey: player.publicKey,
-            privateKey: player.privateKey
-        })
+            await createMetadata({
+                asset: {
+                    type: "metadata",
+                },
+                metadata: {
+                    trait_type: createCollectionData.trait_type,
+                    value: createCollectionData.value,
+                    display_type: createCollectionData.display_type,
+                },
+                publicKey: player.publicKey,
+                privateKey: player.privateKey
+            })
+        }
     }
 
     const register_result = await player_login({

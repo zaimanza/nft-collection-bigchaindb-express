@@ -8,24 +8,36 @@
 
 <body class="">
   <main>
-    <form action="/home" method="get" class="">
+    <form action="/home/add_metadata" method="get" class="">
       <div class="">
-        <label class="" for="trait_type">
-          Trait type
+        <label class="" for="name">
+          Metadata name
         </label>
-        <input id="trait_type" name="trait_type" type="text" placeholder="Trait type" class="">
+        <input id="name" name="name" type="text" placeholder="Metadata name" class="">
       </div>
       <div class="">
-        <label class="" for="value">
-          Value
+        <label class="" for="description">
+          Metadata description
         </label>
-        <input id="value" name="value" type="text" placeholder="Value" class="">
+        <input id="description" name="description" type="text" placeholder="Metadata description" class="">
       </div>
       <div class="">
-        <label class="" for="display_type">
-          Display type
+        <label class="" for="token_id">
+          Token ID
         </label>
-        <input id="display_type" name="display_type" type="text" placeholder="Display type" class="">
+        <input id="token_id" name="token_id" type="text" placeholder="Token ID" class="">
+      </div>
+      <div class="">
+        <label class="" for="image">
+          Image
+        </label>
+        <input id="image" name="image" type="text" placeholder="Image" class="">
+      </div>
+      <div class="">
+        <label class="" for="current_chain">
+          Current chain
+        </label>
+        <input id="current_chain" name="current_chain" type="text" placeholder="Current chain" class="">
       </div>
       <div class="">
         <button type="submit" class="">
