@@ -40,12 +40,78 @@
         <input id="current_chain" name="current_chain" type="text" placeholder="Current chain" class="">
       </div>
       <div class="">
+        <label class="">
+          Attributes
+        </label>
+        <div id="attribute-list" class="">
+          <ul></ul>
+        </div>
+
+      </div>
+      <div class="">
         <button type="submit" class="">
           Add metadata
         </button>
       </div>
     </form>
+    <form id="add-attribute">
+      <input type="text" name="trait_type" placeholder="Trait type" />
+      <input type="text" name="value" placeholder="Value" />
+      <input type="text" name="display_type" placeholder="Display type" />
+      <button>Add attribute</button>
+    </form>
   </main>
+  <script>
+    const attributeList = document.querySelector('#attribute-list ul');
+    const forms = document.forms
+    const addForm = forms['add-attribute']
+
+    // delete attributes
+    attributeList.addEventListener('click', (e) => {
+      if (e.target.className == 'delete') {
+        const li = e.target.parentElement;
+        li.parentNode.removeChild(li);
+      }
+    });
+
+    // add attributes
+    addForm.addEventListener('submit', function(e) {
+      e.preventDefault()
+
+      const trait_type = addForm.querySelector('input[name="trait_type"]').value
+      const value = addForm.querySelector('input[name="value"]').value
+      const display_type = addForm.querySelector('input[name="display_type"]').value
+
+      if (trait_type != "" && value != "" && display_type != "") {
+        const li = document.createElement('li')
+        const trait_type_span = document.createElement('span')
+        const value_span = document.createElement('span')
+        const display_type_span = document.createElement('span')
+        const delete_btn_span = document.createElement('span')
+
+        trait_type_span.textContent = trait_type
+        value_span.textContent = value
+        display_type_span.textContent = display_type
+        delete_btn_span.textContent = 'delete'
+
+        trait_type_span.setAttribute('name', "trait_type")
+        value_span.setAttribute('name', "value")
+        display_type_span.setAttribute('name', "display_type")
+        delete_btn_span.classList.add('delete')
+
+        li.appendChild(trait_type_span)
+        li.appendChild(value_span)
+        li.appendChild(display_type_span)
+        li.appendChild(delete_btn_span)
+
+        addForm.querySelector('input[name="trait_type"]').value = ''
+        addForm.querySelector('input[name="value"]').value = ''
+        addForm.querySelector('input[name="display_type"]').value = ''
+
+        attributeList.appendChild(li);
+      }
+    });
+  </script>
 
 </body>
 
